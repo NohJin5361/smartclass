@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학생 가산점 관리 (Lite+)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>학생 가산점 관리</h1>
+
+  <div class="input-group">
+    <input type="text" id="classInput" placeholder="새 반 이름 입력">
+    <button onclick="addClass()">반 추가</button>
+    <button class="danger" onclick="removeClass()">반 삭제</button>
+    <button id="themeBtn" class="theme-toggle" onclick="toggleTheme()">🌙</button>
+  </div>
+
+  <div class="input-group">
+    <label for="classSelect">반:</label>
+    <select id="classSelect" onchange="render()"></select>
+
+    <label for="sortSelect">정렬:</label>
+    <select id="sortSelect" onchange="render()">
+      <option value="default">입력순</option>
+      <option value="name">이름</option>
+      <option value="bonus">가산점</option>
+    </select>
+
+    <input id="searchInput" placeholder="이름 검색" oninput="render()" style="flex:1 1 120px">
+    <input id="minBonusInput" type="number" placeholder="최소 점수" oninput="render()" style="width:100px">
+  </div>
+
+  <div class="input-group">
+    <input type="text" id="nameInput" placeholder="학생 이름 입력">
+    <button onclick="addStudent()">학생 추가</button>
+
+    <input type="file" id="csvInput" accept=".csv" onchange="importCSV(event)">
+    <button onclick="saveCSV()">CSV 내보내기</button>
+    <button onclick="undo()">↶ 실행 취소</button>
+
+    <button onclick="showSummary()">📊 요약</button>
+    <button onclick="window.print()">🖨️ 프린트</button>
+  </div>
+
+  <div id="studentList"></div>
+
+  <script defer src="script.js"></script>
+</body>
+</html>

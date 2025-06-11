@@ -1,0 +1,127 @@
+
+/* --------------------------------------------------
+   style.css – Polished UI revamp (v2)
+   • Soft neumorphic card look
+   • Smoother colors & transitions
+   • Button / input refinements
+   • Works in both light & dark themes
+-------------------------------------------------- */
+
+/* ---------- Color tokens ---------- */
+:root {
+  --bg:          #f5f7fb;
+  --panel-bg:    #ffffff;
+  --text:        #32435f;
+  --muted-text:  #6c7a92;
+  --primary:     #4b7bec;
+  --primary-hov: #416ad2;
+  --danger:      #ff5e5e;
+  --danger-hov:  #e04b4b;
+  --shadow:      0 6px 18px rgba(0,0,0,.06);
+  --radius:      12px;
+}
+.dark {
+  --bg:          #202530;
+  --panel-bg:    #2a3140;
+  --text:        #e5ecff;
+  --muted-text:  #93a2c3;
+  --primary:     #5f8dff;
+  --primary-hov: #4d74e4;
+  --danger:      #ff7b7b;
+  --danger-hov:  #e36666;
+  --shadow:      0 4px 14px rgba(0,0,0,.4);
+}
+
+/* ---------- Base layout ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: background .3s ease, color .3s ease;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ---------- Form controls ---------- */
+.input-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-bottom: 1.2rem;
+}
+
+input, select {
+  padding: .6rem .8rem;
+  border: 1px solid #d0d6e4;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: #fdfdfd;
+  transition: border-color .2s;
+}
+.dark input, .dark select { background: #373e4e; border-color: #4b5567; }
+input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+/* ---------- Buttons ---------- */
+button {
+  padding: .6rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: .95rem;
+  font-weight: 600;
+  background: var(--primary);
+  color: #fff;
+  transition: background .2s, transform .1s;
+}
+button:hover { background: var(--primary-hov); transform: translateY(-2px); }
+button:active{ transform: translateY(0); }
+
+button.danger { background: var(--danger); }
+button.danger:hover { background: var(--danger-hov); }
+
+.theme-toggle, #langBtn {
+  padding: .6rem .8rem;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--primary);
+}
+.theme-toggle:hover, #langBtn:hover { background: rgba(0,0,0,0.05); }
+.dark .theme-toggle:hover, .dark #langBtn:hover { background: rgba(255,255,255,0.08); }
+
+/* ---------- Cards ---------- */
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--panel-bg);
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+
+.card strong { font-size: 1.05rem; }
+.card small { color: var(--muted-text); font-size: .8rem; }
+
+/* Highlight for TOP ranking */
+.card.top { border-left: 5px solid var(--primary); }
+
+/* ---------- Print mode ---------- */
+@media print {
+  body { max-width: none; box-shadow: none; padding: 0; }
+  .input-group, .theme-toggle, #langBtn { display: none !important; }
+  .card { page-break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+}
